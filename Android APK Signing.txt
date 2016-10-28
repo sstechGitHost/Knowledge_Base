@@ -1,0 +1,21 @@
+keystore: a database of security certificaes that is created by using the program keytool from the Java SDK.
+Why keystore?
+	To publishing Xamarin.Android app as Android will not run applications that have not been digitally signed.
+
+Types of keystores: a) debug keystore b) release keystore
+
+debug keystore: used to sign android app during development which allows the app to be deployed directly to the emulator or to devices
+		configured to use debuggable apps.
+		This keystore is not recognized as a valid keystore for the purpose of distributing apps
+
+why a private keystore is required?
+For this reason, a private keystore must be created and used for signing applications. This is a step that should only be performed once,
+as the same key will be used for publishing updates and can then be used to sign other apps.
+
+what if the private keystore is lost?
+It will not possible to publish updates to the application with Google play. The only solution would be to create a new keystore, re-sign the APK with new key and submit a new application. 
+
+How to create a new keystore?
+$ keytool -genkeypair -v -keystore <filename>.keystore -alias <key-name> -keyalg RSA -keysize 2048 -validity 10000
+<key-name> - name of key within keystore
+In Visual studio 2015, Archive does the keystore generation.
